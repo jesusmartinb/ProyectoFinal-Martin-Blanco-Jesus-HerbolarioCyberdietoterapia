@@ -1,0 +1,183 @@
+html {
+	/* font-size: 10px; */
+	/* Hack para Box Model */
+	box-sizing: border-box;
+	scroll-snap-type: y mandatory;
+}
+
+/* Hack para Box Model */
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Playfair Display', serif;
+}
+
+h2 {
+	font-size: 2.4rem;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 1.6rem;
+	font-weight: 700;
+	text-transform: capitalize;
+}
+
+h4 {
+	font-size: 1.8rem;
+	font-weight: 200;
+}
+
+.slider-container {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+.slider-container-item {
+	width: 100%;
+	list-style: none;
+}
+
+.slider-container ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	animation: slide 30s infinite alternate ease-in-out;
+}
+
+.slider-container img {
+	flex: 0 0 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+@keyframes slide {
+	0% {
+		margin-left: 0;
+	}
+
+	20% {
+		margin-left: 0;
+	}
+
+	25% {
+		margin-left: -100%;
+	}
+
+	45% {
+		margin-left: -100%;
+	}
+
+	50% {
+		margin-left: -200%;
+	}
+
+	70% {
+		margin-left: -200%;
+	}
+
+	75% {
+		margin-left: -300%;
+	}
+
+	100% {
+		margin-left: -300%;
+	}
+}
+
+.categoria-dest-content,
+.cat-title .title {
+	background-image: linear-gradient(to bottom, #82b835, #82b835);
+	transition: all .2s ease;
+}
+
+.categoria-dest-content:hover,
+.cat-title .title:hover {
+	background-image: linear-gradient(to bottom, white, white);
+}
+
+.modal_login {
+	background-color: rgba(0, 0, 0, .3);
+	pointer-events: none;
+	height: 100vh;
+	width: 100vw;
+	transition: opacity .3s ease;
+	z-index: 99999;
+}
+
+.show-modal {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.modal {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.go-top-button {
+	transition: .2s;
+	transform: translate(-50%, -50%);
+}
+
+.go-top-button .fa-chevron-up {
+	transform: translate(-50%, -50%) scale(0);
+	transition: .2s;
+}
+
+.show {
+	z-index: 10;
+}
+
+.show .go-top-button {
+	animation: popup .3s ease-in-out;
+	width: 64px;
+	height: 64px;
+	z-index: 11;
+}
+
+.show .fa-chevron-up {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes popup {
+	0% {
+		width: 0px;
+		height: 0px;
+	}
+
+	50% {
+		width: 80px;
+		height: 80px;
+	}
+
+	100% {
+		width: 64px;
+		height: 64px;
+	}
+}
+
+.submenu:hover #carrito {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	z-index: 1;
+}
+
+.error {
+	text-align: center;
+	color: red;
+	font-weight: bold;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "herbolariocyberdietoterapia-pf-martin-blanco-jesus",
+  "version": "1.0.0",
+  "description": "Trabajo del Curso de JavaScript del Programa Carrera de Desarrollo Full Stack CoderHouse para el Proyecto Final",
+  "main": "index.js",
+  "scripts": {
+    "dev": "postcss ./src/input.css -o ./assets/css/output.css --watch"
+  },
+  "author": "Jesus Martin Blanco",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "postcss-cli": "^10.0.0",
+    "tailwindcss": "^3.1.8"
+  }
+}

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Herbolario Cyberdietoterapia</title>
+	<!-- Estilos -->
+	<link rel="stylesheet" href="assets/css/output.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/92d719d9ae.js" crossorigin="anonymous"></script>
+	<!-- CDN Sweetalert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="bg-orange-500 text-xl font-normal overflow-x-hidden">
+	<div class="wrapper bg-orange-400 max-w-[1920px] mx-auto">
+		<header class="header text-center p-4 lg:sticky lg:top-0 lg:z-50 bg-orange-400">
+			<div class="header-sup 2xl:flex 2xl:flex-row 2xl:justify-around">
+				<div class="contactar lg:flex lg:flex-row lg:justify-around 2xl:min-w-[900px]">
+					<div class="tel my-4 lg:my-0"><i class="fa-solid fa-phone"></i> 630831440
+					</div>
+					<div class="mail my-4 lg:my-0"><i class="fa-solid fa-envelope"></i> info@cyberdietoterapia.com</div>
+					<div class="horario my-4 lg:my-0"><i class="fa-solid fa-clock"></i> L - V de 9:00 a 14:00<br> y de 17:00 a 20:00<br> S de 9:00 a 14:00</div>
+				</div>
+				<div class="bienvenida lg:flex lg:flex-row lg:justify-around  2xl:min-w-[600px]">
+					<div class="bienve text-2xl my-4">Bienvenido <span id="nombre-usuario" class="name"></span></div>
+					<div class="cuenta my-4"><i class="fa-solid fa-user"></i> <button id="open_modal_register">Mi Cuenta</button></div>
+				</div>
+			</div>
+			<div class="header-inf lg:flex lg:flex-row lg:justify-around items-center">
+				<div class="logo">
+					<h1 class="text-3xl font-black">Herbolario <br><span class="marca">Cyberdietoterapia</span></h1>
+				</div>
+				<!-- <div class="buscar my-6">
+					<form action="#" id="busqueda" method="post" class="relative">
+						<input class="w-full p-4 rounded-lg text-base lg:min-w-[560px]" type="text" name="search" id="search" placeholder="¿Qué producto estás buscando?">
+						<button class="absolute top-4 right-4" type="submit" id="submit-buscador"><span class="search"><i class="fa-solid fa-magnifying-glass"></i></span></button>
+					</form>
+				</div> -->
+				<ul>
+					<li class="submenu z-40 relative">
+						<div id="img-carrito" class="carrito text-right"><i class="fa-solid fa-cart-shopping"></i> Mi Carrito</div>
+						<div id="carrito" class="bg-white rounded absolute -left-[810px] border-2 hidden min-w-[1000px] min-h-[300px] h-[600px] overflow-y-scroll">
+
+							<table id="lista-carrito" class="w-full min-h-[500px]">
+								<thead>
+									<tr>
+										<th class="w-42">Imagen</th>
+										<th class="w-84">Nombre</th>
+										<th class="w-24">Precio Unitario</th>
+										<th class="w-36">Cantidad</th>
+										<th class="w-30"></th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								<tfoot>
+									<tr>
+										<td colspan="5">Total: <span class="font-black text-orange-500 text-3xl" id="total"></span><span class="moneda font-black text-orange-500 text-3xl">€</span></td>
+									</tr>
+								</tfoot>
+							</table>
+							<a href="#" id="vaciar-carrito" class="w-1/4 inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3">Vaciar Carrito</a>
+							<a href="#" id="finalizar-pedido" class="w-1/4 inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3">Finalizar Pedido</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="breadcrumb text-left">
+				<span><i class="fa-solid fa-house"></i></span><a href="index.html">Home</a>
+			</div>
+		</header>
+		<main>
+			<!-- <div class="slider max-w-[1024px] mx-auto">
+				<div class="slider-container p-4 mt-6">
+					<ul>
+						<li class="slider-container-item p-4"><img class="slider-item" src="assets/img/slider1.jpg" alt=""></li>
+						<li class="slider-container-item p-4"><img class="slider-item" src="assets/img/slider2.jpg" alt=""></li>
+						<li class="slider-container-item p-4"><img class="slider-item" src="assets/img/slider3.jpg" alt=""></li>
+						<li class="slider-container-item p-4"><img class="slider-item" src="assets/img/slider4.jpg" alt=""></li>
+					</ul>
+				</div>
+			</div> -->
+			<!-- <section class="categorias-dest my-6 p-4">
+				<h2 class="text-2xl mb-4">Categorías Destacadas</h2>
+				<div class="wraper flex gap-x-2 gap-y-4 flex-wrap">
+					<article class="categoria-dest text-center relative m-auto">
+						<div class="categoria-dest-content min-w-[288px] max-w-[340px] m-auto relative">
+							<a href="#"><img class="cat-dest-img inline-block max-w-full h-auto border-none mix-blend-multiply" src="assets/img/catdest1.jpg" alt=""></a>
+						</div>
+						<div class="cat-title w-full absolute top-[42%] left-0">
+							<h3 class="title text-2xl text-orange-600 bg-transparent cursor-pointer w-full">Aparato Digestivo</h3>
+						</div>
+					</article>
+					<article class="categoria-dest text-center relative m-auto">
+						<div class="categoria-dest-content min-w-[288px] max-w-[340px] m-auto relative">
+							<a href="#"><img class="cat-dest-img inline-block max-w-full h-auto border-none mix-blend-multiply" src="assets/img/catdest2.jpg" alt=""></a>
+						</div>
+						<div class="cat-title w-full absolute top-[42%] left-0">
+							<h3 class="title text-2xl text-orange-600 bg-transparent cursor-pointer w-full">Sistema Nervioso</h3>
+						</div>
+					</article>
+					<article class="categoria-dest text-center relative m-auto">
+						<div class="categoria-dest-content min-w-[288px] max-w-[340px] m-auto relative">
+							<a href="#"><img class="cat-dest-img inline-block max-w-full h-auto border-none mix-blend-multiply" src="assets/img/catdest3.jpg" alt=""></a>
+						</div>
+						<div class="cat-title w-full absolute top-[42%] left-0">
+							<h3 class="title text-2xl text-orange-600 bg-transparent cursor-pointer w-full">Articulaciones y Músculos</h3>
+						</div>
+					</article>
+					<article class="categoria-dest text-center relative m-auto">
+						<div class="categoria-dest-content min-w-[288px] max-w-[340px] m-auto relative">
+							<a href="#"><img class="cat-dest-img inline-block max-w-full h-auto border-none mix-blend-multiply" src="assets/img/catdest4.jpg" alt=""></a>
+						</div>
+						<div class="cat-title w-full absolute top-[42%] left-0">
+							<h3 class="title text-2xl text-orange-600 bg-transparent cursor-pointer w-full">Cosmética Natural</h3>
+						</div>
+					</article>
+					<article class="categoria-dest text-center relative m-auto">
+						<div class="categoria-dest-content min-w-[288px] max-w-[340px] m-auto relative">
+							<a href="#"><img class="cat-dest-img inline-block max-w-full h-auto border-none mix-blend-multiply" src="assets/img/catdest5.jpg" alt=""></a>
+						</div>
+						<div class="cat-title w-full absolute top-[42%] left-0">
+							<h3 class="title text-2xl text-orange-600 bg-transparent cursor-pointer w-full">Vitaminas y Minerales</h3>
+						</div>
+					</article>
+				</div>
+			</section> -->
+			<hr>
+			<section class="currency-container py-8 text-center">
+				<div class="currency">
+					<h2 class="text-2xl mb-4"><label for="currency">Escoja su Divisa</label></h2>
+					<select class="w-1/3 p-4 rounded-lg text-base" name="currency" id="currency">
+						<option value="ARS">ARS | PESO ARGENTINO</option>
+						<option value="BOB">BOB | BOLIVIANO</option>
+						<option value="CLP">CLP | PESO CHILENO</option>
+						<option value="COP">COP | PESO COLOMBIANO</option>
+						<option value="CRC">CRC | COLÓN COSTARRICENSE</option>
+						<option value="DOP">DOP | PESO DOMINICANO</option>
+						<option value="EUR" selected>EUR | EURO</option>
+						<option value="GTQ">GTQ | QUETZAL GUATEMALTECO</option>
+						<option value="MXN">MXN | PESO MEXICANO</option>
+						<option value="PEN">PEN | SOL PERUANO</option>
+						<option value="PYG">PYG | GUARANÍ PARAGUAYO</option>
+						<option value="USD">USD | DOLAR DE EEUU</option>
+						<option value="UYU">UYU | PESO URUGUAYO</option>
+						<option value="VES">VES | BOLIVAR VENEZOLANO</option>
+					</select>
+				</div>
+			</section>
+			<hr>
+			<section class="todos my-6 p-4">
+				<h2 class="text-2xl mb-4">Todos los productos</h2>
+				<div class="ordenar mb-6 text-right">
+					<form action="">
+						<label for="ordenar">Ordenar por:</label>
+						<select class="p-4 rounded-lg text-base" name="ordenar" id="ordenar">
+							<option value="">Seleccione</option>
+							<option value="pa">Precio: más bajo el primero</option>
+							<option value="pd">Precio: más alto el primero</option>
+							<option value="na">Nombre: de la A a la Z</option>
+							<option value="nd">Nombre: de la Z a la A</option>
+						</select>
+					</form>
+				</div>
+				<div class="todos-productos 2xl:grid 2xl:grid-cols-[340px_minmax(900px,_1fr)_0px]">
+					<div class="zona-filtros">
+						<h4 class="filtros">Filtros</h4>
+						<div class="contenedor-filtros">
+							<form id="filtros">
+								<div class="precios md:flex flex-row justify-between 2xl:block">
+									<div class=" mt-6">
+										<label for="precio-min">Precio Mínimo</label>
+										<select class="w-full p-4 rounded-lg text-base" name="precio-min" id="precio-min">
+											<option value="">Seleccione</option>
+											<option value="2">2€</option>
+											<option value="5">5€</option>
+											<option value="10">10€</option>
+											<option value="15">15€</option>
+											<option value="20">20€</option>
+										</select>
+									</div>
+									<div class="mt-6">
+										<label for="precio-max">Precio Máximo</label>
+										<select class="w-full p-4 rounded-lg text-base" name="precio-max" id="precio-max">
+											<option value="">Seleccione</option>
+											<option value="20">20€</option>
+											<option value="25">25€</option>
+											<option value="30">30€</option>
+											<option value="35">35€</option>
+											<option value="40">40€</option>
+										</select>
+									</div>
+								</div>
+								<div class="categorias md:flex flex-row justify-between 2xl:block">
+									<div class="mt-6">
+										<label for="categoria">Categoría</label>
+										<select class="w-full p-4 rounded-lg text-base" name="categoria" id="categoria">
+											<option value="">Seleccione</option>
+											<!-- Se cargan dinamicamente -->
+										</select>
+									</div>
+									<div class="mt-6">
+										<label for="subcategoria">Subcategoría</label>
+										<select class="w-full p-4 rounded-lg text-base" name="subcategoria" id="subcategoria">
+											<option value="">Seleccione</option>
+											<!-- generados dinámicamente a partir de la categoría seleccionada -->
+										</select>
+									</div>
+								</div>
+								<div class="marcas md:flex flex-row justify-between 2xl:block">
+									<div class="mt-6">
+										<label for="marca">Marca</label>
+										<select class="w-full p-4 rounded-lg text-base" name="marca" id="marca">
+											<option value="">Seleccione</option>
+											<option value="Drasanvi">Drasanvi</option>
+											<option value="Herbora">Herbora</option>
+											<option value="Mahen">Mahen</option>
+											<option value="Tegor">Tegor</option>
+											<option value="Solgar">Solgar</option>
+											<option value="Soria Natural">Soria Natural</option>
+											<option value="Dr. Organic">Dr. Organic</option>
+											<option value="ESI">ESI</option>
+											<option value="Marnys">Marnys</option>
+											<option value="Bioserum">Bioserum</option>
+											<option value="Hifas da Terra">Hifas da Terra</option>
+											<option value="Mundo Natural">Mundo Natural</option>
+											<option value="Solaray">Solaray</option>
+											<option value="Margan">Margan</option>
+										</select>
+									</div>
+									<div class="mt-6">
+										<label for="descuento">Descuento</label>
+										<select class="w-full p-4 rounded-lg text-base" name="descuento" id="descuento">
+											<option value="">Seleccione</option>
+											<option value="1">Hasta 10%</option>
+											<option value="11">De 11% a 20%</option>
+											<option value="21">De 21% a 30%</option>
+											<option value="31">De 31% a 40%</option>
+											<option value="41">De 41% a 50%</option>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="zona-productos" id="lista-productos">
+						<div class="slider-container-tv cards-productos mt-6 text-center">
+							<ul class="flex flex-wrap justify-evenly gap-y-6" id="resultado">
+								<!-- Listado de productos generados dinámicamente -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			<hr>
+			<section class="marcas my-6 p-4 hidden md:block">
+				<h2 class="text-2xl mb-4">Marcas Destacadas</h2>
+				<div class="container-marcas mt-6 text-center">
+					<ul class="flex justify-around bg-white">
+						<li>
+							<picture class="flex justify-center">
+								<img width="120" src="assets/img/marcas01.jpg" alt="">
+							</picture>
+						</li>
+						<li>
+							<picture class="flex justify-center">
+								<img width="120" src="assets/img/marcas02.jpg" alt="">
+							</picture>
+						</li>
+						<li>
+							<picture class="flex justify-center">
+								<img width="120" src="assets/img/marcas03.jpg" alt="">
+							</picture>
+						</li>
+						<li>
+							<picture class="flex justify-center">
+								<img width="120" src="assets/img/marcas04.jpg" alt="">
+							</picture>
+						</li>
+						<li>
+							<picture class="flex justify-center">
+								<img width="120" src="assets/img/marcas05.jpg" alt="">
+							</picture>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<hr>
+			<section class="info content p-5">
+				<div class="cards-info flex flex-col lg:flex-row justify-around">
+					<div class="card-info flex flex-col justify-start items-center mt-8">
+						<div class="iconos">
+							<i class="fas fa-credit-card text-6xl"></i>
+						</div> <!-- Fin .iconos -->
+						<div class="contenido text-center mt-5">
+							<p class="lg:max-w-sm">Pago seguro con tarjeta,<br> transferencia o PayPal</p>
+						</div> <!-- Fin .contenido -->
+					</div> <!-- Fin .card-info -->
+					<div class="card-info flex flex-col justify-start items-center mt-8">
+						<div class="iconos2">
+							<i class="fa-solid fa-comments text-6xl"></i>
+						</div> <!-- Fin .iconos -->
+						<div class="contenido text-center mt-5">
+							<p class="lg:max-w-sm">Atención Personalizada 630831440<br> L - V de 9:00 a 14:00<br> y de 17:00 a 20:00<br> S de 9:00 a 14:00</p>
+						</div> <!-- Fin .contenido -->
+					</div> <!-- Fin .card-info -->
+					<div class="card-info flex flex-col justify-start items-center mt-8">
+						<div class="iconos3">
+							<i class="fa-solid fa-truck text-6xl"></i>
+						</div> <!-- Fin .iconos -->
+						<div class="contenido text-center mt-5">
+							<p class="lg:max-w-sm">Envío Gratis<br> A partir de <span id="envioGratis">45</span><span class="moneda">€</span> en Península</p>
+						</div> <!-- Fin .contenido -->
+					</div> <!-- Fin .card-info -->
+				</div> <!-- Fin .cards-info -->
+			</section>
+		</main>
+	</div>
+	<!-- <section class="suscribe py-7 px-5 bg-black text-white text-center">
+		<p>¿Quieres conseguir <span class="precio">10</span> <span class="divisa">€</span> de regalo?</p>
+		<h2 class="text-4xl my-6">Suscríbete a nuestra Newsletter</h2>
+		<div class="email my-6">
+			<input class="w-full p-4 pl-10 rounded-lg text-base text-black max-w-[370px]" type="email" name="suscrib" id="suscrib" placeholder="Introduce tu email"><span class="suscrib relative"><i class="fa-solid fa-envelope absolute top-1 -left-[22rem] text-black"></i></span>
+		</div>
+		<div class="acepta">
+			<input type="checkbox" name="acepta" id="acepta">
+			<label for="acepta">Acepto la Política de Privacidad y Condiciones de la Suscripción</label>
+		</div>
+		<button class="bg-white text-black p-4 mt-4 rounded">Suscribirme</button>
+	</section> -->
+
+	<footer class="footer py-10 px-5 bg-slate-300 text-green-900 text-center">
+		<div class="footer-sup 2xl:flex justify-evenly">
+			<div class="identidad min-w-[340px]">
+				<div class="logo">
+					<h2 class="text-3xl font-black">Herbolario <br><span class="marca">Cyberdietoterapia</span></h2>
+				</div>
+				<div class="tel my-4"><i class="fa-solid fa-phone"></i> 630831440
+				</div>
+				<div class="mail my-4"><i class="fa-solid fa-envelope"></i> info@cyberdietoterapia.com
+				</div>
+			</div>
+			<div class="menu 2xl:flex">
+				<div class="empresa min-w-[330px]">
+					<h3 class="text-2xl mt-4">SOBRE LA EMPRESA</h3>
+					<nav class="sobre-empresa">
+						<ul>
+							<li>Conócenos</li>
+							<li>Política de Privacidad</li>
+							<li>Pólitica de Cookies</li>
+							<li>Condiciones Generales de Venta</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="cuenta">
+					<h3 class="text-2xl mt-4">MI CUENTA</h3>
+					<nav class="mi-cuenta min-w-[330px]">
+						<ul>
+							<li>Mi Cuenta</li>
+							<li>Ver Carrito</li>
+							<li>Mis Listas</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="infor min-w-[300px]">
+					<h3 class="text-2xl mt-4">INFORMACIÓN</h3>
+					<nav class="informacion">
+						<ul>
+							<li>Formas de Pago</li>
+							<li>FAQ's</li>
+							<li>Contacto</li>
+							<li>Envíos</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="iconos 2xl:flex justify-evenly">
+			<div class="pagos text-5xl flex flex-row justify-evenly my-8 2xl:min-w-[400px]">
+				<div class="visa"><i class="fa-brands fa-cc-visa"></i></div>
+				<div class="master-card"><i class="fa-brands fa-cc-mastercard"></i></div>
+				<div class="paypal"><i class="fa-brands fa-paypal"></i></div>
+			</div>
+			<div class="redes text-5xl flex flex-row justify-evenly my-8 2xl:min-w-[400px]">
+				<div class="facebook"><i class="fa-brands fa-square-facebook"></i></div>
+				<div class="twitter"><i class="fa-brands fa-square-twitter"></i></div>
+				<div class="youtube"><i class="fa-brands fa-square-youtube"></i></div>
+				<div class="instagram"><i class="fa-brands fa-square-instagram"></i></div>
+			</div>
+		</div>
+		<div class="copy mt-10">
+			<p>Cyberdietoterapia SL &reg; - Avd. Catalunya 39, 3º 4ª, 08290 Cerdanyola del Vallès - Tel. 674581254 - info@cyberdietoterapia.com</p>
+			<p>2022 &copy;. Todos los derechos reservados</p>
+		</div>
+	</footer>
+	<div class="modal_login flex justify-center items-center fixed opacity-0 top-0 left-0" id="modal-login">
+		<div class="modal bg-orange-300 max-w-full w-[600px] py-8 px-12 rounded-md text-center text-2xl">
+			<p class="text-right mb-4"><span class="text-2xl cursor-pointer underline" id="closeLogin">Cerrar X</span></p>
+			<h1 class="mb-8">Entrada</h1>
+			<form method="post" id="form_login">
+				<div class="text-left my-4">
+					<label for="email_modal_login">Email</label>
+					<input class="rounded w-full" type="email" name="email_modal_login" id="email_modal_login" placeholder="Entre su email">
+				</div>
+				<div class="text-left my-4">
+					<label for="password_login">Contraseña</label>
+					<input class="rounded w-full" type="password" name="password_login" id="password_login" placeholder="Entre su contraseña">
+				</div>
+				<div class="boton-entrar" id="boton-entrar"><button class="inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3" type="submit" id="entrar">Entrar</button></div>
+			</form>
+			<p>No estás registrado. <button class="inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3" id="open_modal_register2">Crea tú cuenta</button></p>
+		</div>
+	</div>
+
+	<div class="modal_login flex justify-center items-start fixed opacity-0 top-0 left-0 overflow-auto" id="modal-register">
+		<div class="modal bg-orange-300 max-w-full w-[600px] py-8 px-12 rounded-md text-center text-2xl overflow-y-auto">
+			<p class="text-right mb-4"><span class="text-2xl cursor-pointer underline" id="close">Cerrar X</span></p>
+			<p>Tienes ya una cuenta. <button class="inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3" id="open_modal_loginb">Entra</button></p>
+			<h1>Registro</h1>
+			<form id="form_register">
+				<div class="text-left my-4">
+					<Label for="nif">NIF/NIE</Label>
+					<input class="rounded w-full" type="text" name="nif" id="nif" placeholder="Entre su NIF/NIE">
+				</div>
+				<div class="text-left my-4">
+					<Label for="name">Nombre</Label>
+					<input class="rounded w-full" type="text" name="name" id="name" placeholder="Introduzca su nombre">
+				</div>
+				<div class="text-left my-4">
+					<Label for="surname">Apellidos</Label>
+					<input class="rounded w-full" type="text" name="surname" id="surname" placeholder="Introduzca sus apellidos">
+				</div>
+				<div class="text-left my-4">
+					<Label for="username_modal_register">Nombre de Usuario</Label>
+					<input class="rounded w-full" type="text" name="username_modal_register" id="username_modal_register" placeholder="Entre su nombre de usuario">
+				</div>
+				<div class="text-left my-4">
+					<label for="email_modal_register">Email</label>
+					<input class="rounded w-full" type="email" name="email_modal_register" id="email_modal_register" placeholder="Entre su email">
+				</div>
+				<div class="text-left my-4">
+					<label for="password_register">Contraseña</label>
+					<input class="rounded w-full" type="password" name="password_register" id="password_register" placeholder="Entre su contraseña">
+				</div>
+				<div class="text-left my-4">
+					<label for="password2_register">Confirme la contraseña</label>
+					<input class="rounded w-full" type="password" name="password2_register" id="password2_register" placeholder="Entre de nuevo su contraseña">
+				</div>
+				<div class="text-left my-4">
+					<Label for="direccion">Dirección</Label>
+					<input class="rounded w-full" type="text" name="direccion" id="direccion" placeholder="Entre su dirección">
+				</div>
+				<div class="text-left my-4">
+					<Label for="cp">Código Postal</Label>
+					<input class="rounded w-full" type="text" name="cp" id="cp" placeholder="Entre su código postal">
+				</div>
+				<div class="text-left my-4">
+					<Label for="ciudad">Ciudad</Label>
+					<input class="rounded w-full" type="text" name="ciudad" id="ciudad" placeholder="Entre su ciudad">
+				</div>
+				<div class="text-left my-4">
+					<Label for="pais">País</Label>
+					<input class="rounded w-full" type="text" name="pais" id="pais" placeholder="Entre su pais">
+				</div>
+				<div class="text-left my-4">
+					<Label for="provincia">Provincia</Label>
+					<input class="rounded w-full" type="text" name="provincia" id="provincia" placeholder="Entre su provincia">
+				</div>
+				<div class="text-left my-4">
+					<Label for="phone">Teléfono o Movil</Label>
+					<input class="rounded w-full" type="tel" name="phone" id="phone" placeholder="Entre su teléfono">
+				</div>
+				<input type="hidden" name="admin" id="admin" value="false">
+				<div class="boton-enviar" id="boton-enviar">
+					<button type="submit" class="inline-block border-2 rounded p-4 bg-orange-500 text-white mb-3" id="enviar">Registrarse</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Botón volver arriba -->
+	<div class="go-top-container fixed bottom-2 right-2 w-16 h-16 -z-10">
+		<div class="go-top-button w-0 h-0 bg-green-500 rounded-full cursor-pointer top-1/2 left-1/2 -z-10 relative">
+			<i class="fa-solid fa-chevron-up absolute text-xl top-[48%] left-1/2 text-white"></i>
+		</div>
+	</div>
+
+
+	<script src="assets/js/goTop.js"></script>
+	<script src="assets/js/Usuario.js"></script>
+	<script src="assets/js/usuarios.js"></script>
+	<script src="assets/js/registro-login.js"></script>
+	<script src="assets/js/productos.js"></script>
+	<script src="assets/js/divisas.js"></script>
+	<script src="assets/js/filtrado.js"></script>
+	<!-- <script src="assets/js/buscador.js"></script> -->
+	<script src="assets/js/carrito.js"></script>
+	<!-- <script src="assets/js/compra.js"></script> -->
+</body>
+
+</html>
